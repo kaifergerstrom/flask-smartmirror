@@ -1,5 +1,6 @@
-
 import requests
+import json
+from urllib.request import urlopen
 
 icon_lookup = {
 	'clear-day': "assets/Sun.png",  # clear sky day
@@ -17,26 +18,42 @@ icon_lookup = {
 	'hail': "assests/Hail.png"  # hail
 }
 
+
+def fetch_ip():
+	# Grab location information from IP through web scraping
+	url = 'https://ipapi.co/8.8.8.8/json/'
+	response = urlopen(url)
+	data = json.load(response)
+
+	IP = data['ip']
+	org = data['org']
+	city = data['city']
+	country = data['country']
+	latitude = data['latitude']
+	longitude = data['longitude']
+	region = data['region']
+
+	return latitude, longitude
+
+
 def get_weather():
 
 	APIKEY = '6b4e2599041ea02b9f19e4e86ae23f59'
-	LAT = 37.8267
-	LON = -122.4233
+	LAT, LON = fetch_ip()
 	URL = 'https://api.darksky.net/forecast/{}/{},{}'.format(APIKEY, LAT, LON)
-
+	print(URL)
 	r = requests.get(URL)
 	json = r.json()
 	currently = json['currently']
+	hourly = json['hourly']
 
 	title = currently['summary']
 	icon = icon_lookup[currently['icon']]
 	temperature = int(round(currently['temperature']))
+	desc = hourly['summary'].rstrip('.')
 
-	return {'title':title, 'icon':icon, 'temperature':temperature}
+	return {'title':title, 'icon':icon, 'temperature':temperature, 'desc':desc}
 
 
-'''
-url = 'http://ipinfo.io/json'
-response = requests.get(url)
-data = response.json()
-'''
+
+get_weather()
