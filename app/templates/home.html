@@ -3,8 +3,20 @@
 	<div class='home-container'>
 
 		<div class='mirror-top-container'>
-			<div class='time-big-number'>{{ currentTime.hour }}:{{ currentTime.minute }}</div>
-			<div class='time-small'>{{ currentTime.hour }}:{{ currentTime.minute }}</div>
+
+			<div class='weather-top-container'>
+				<div class='upper-weather-container'>
+					<div class='weather-current-temp'>{{ currentWeather.temperature }}&#176;</div>
+					<div class='weather-current-icon'><img src="{{ url_for('static', filename=currentWeather.icon) }}"></div>
+				</div>
+				<div class='weather-current-desc'>Will start off rainy then become cloudy later throughout the day</div>
+			</div>
+
+			<div class='time-top-container'>
+				<div class='time-top'>{{ currentTime.hour }}:{{ currentTime.minute }}</div>
+				<div class='time-mid'>{{ currentTime.day }}</div>
+				<div class='time-bottom'>{{ currentTime.month }} {{ currentTime.day_num }}</div>
+			</div>
 		</div>
 
 		<div class='mirror-middle-container'>
