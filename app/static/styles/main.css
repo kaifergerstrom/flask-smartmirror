@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+	outline: none;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	background-color: black;
+}
+
+.home-container {
+	width: 100%;
+	height: 100%;
+}
+
+.mirror-top-container {
+	border: 1px solid red;
+	width: 100%;
+	height: 40%;
+}
+
+.mirror-middle-container {
+	width: 100%;
+	height: 60%;
+}
+
+.mirror-sides-container {
+	width: 90%;
+	height: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.left-side-container {
+	height: 100%;
+	width: 20%;
+	float: left;
+}
+
+.center-side-container {
+	height: 100%;
+	width: 60%;
+	float: left;
+}
+
+.right-side-container {
+	height: 100%;
+	width: 20%;
+	float: left;
+}
+
+
+/* App CSS */
+
+.app-button {
+	background-color: transparent;
+	border: 0;
+	width: 75px;
+	height: 75px;
+	padding: 0;
+	margin-top: 20px;
+}
+
+.app-container {
+	width: 75px;
+}
+
+.mirror-app-icon {
+	width: 75px;
+	height: 75px;
+}
