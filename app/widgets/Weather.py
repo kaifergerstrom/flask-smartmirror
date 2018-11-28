@@ -18,10 +18,11 @@ icon_lookup = {
 	'hail': "assests/Hail.png"  # hail
 }
 
-
-def fetch_ip():
+def get_geo():
 	# Grab location information from IP through web scraping
-	url = 'https://ipapi.co/8.8.8.8/json/'
+	IP = requests.get('http://ip.42.pl/raw').text
+	print(IP)
+	url = 'https://ipapi.co/{}/json/'.format(IP)
 	response = urlopen(url)
 	data = json.load(response)
 
@@ -39,7 +40,7 @@ def fetch_ip():
 def get_weather():
 
 	APIKEY = '6b4e2599041ea02b9f19e4e86ae23f59'
-	LAT, LON = fetch_ip()
+	LAT, LON = get_geo()
 	URL = 'https://api.darksky.net/forecast/{}/{},{}'.format(APIKEY, LAT, LON)
 	print(URL)
 	r = requests.get(URL)
@@ -55,5 +56,5 @@ def get_weather():
 	return {'title':title, 'icon':icon, 'temperature':temperature, 'desc':desc}
 
 
-
-get_weather()
+if __name__ == "__main__":
+	get_weather()

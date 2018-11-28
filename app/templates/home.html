@@ -7,16 +7,16 @@
 			<div class='weather-top-container'>
 				<div class='upper-weather-container'>
 					<div class='weather-current-temp'>{{ currentWeather.temperature }}&#176;</div>
-					<div class='weather-current-icon'><img src="{{ url_for('static', filename=currentWeather.icon) }}"></div>
+					<div class='weather-current-icon'><img src="{{ url_for('static', filename=currentWeather.icon) }}" id='weather-current-img'></div>
 				</div>
 				<div class='weather-current-title'>{{ currentWeather.title }}</div>
 				<div class='weather-current-desc'>{{ currentWeather.desc }}</div>
 			</div>
 
-			<div class='time-top-container'>
-				<div class='time-top'>{{ currentTime.hour }}:{{ currentTime.minute }}</div>
-				<div class='time-mid'>{{ currentTime.day }}</div>
-				<div class='time-bottom'>{{ currentTime.month }} {{ currentTime.day_num }}</div>
+			<div class='time-top-container' id='time-top-container'>
+				<div class='time-top' id='time-top'>{{ currentTime.hour }}:{{ currentTime.minute }}</div>
+				<div class='time-mid' id='time-mid'>{{ currentTime.day }}</div>
+				<div class='time-bottom' id='time-bottom'>{{ currentTime.month }} {{ currentTime.day_num }}</div>
 			</div>
 		</div>
 
@@ -26,18 +26,23 @@
 				<div class='left-side-container'>
 					<div class='app-container'>
 						<button class='app-button'><img class='mirror-app-icon' src="{{ url_for('static', filename='icons/app/camera.png') }}"></button>
-						<button class='app-button'><img class='mirror-app-icon' src='{{ url_for('static', filename='icons/app/settings.png') }}'></button>
-						<button class='app-button'><img class='mirror-app-icon' src='{{ url_for('static', filename='icons/app/photos.png') }}'></button>
-						<button class='app-button'><img class='mirror-app-icon' src='{{ url_for('static', filename='icons/app/news.png') }}'></button>
-						<button class='app-button'><img class='mirror-app-icon' src='{{ url_for('static', filename='icons/app/weather.png') }}'></button>
-						<button class='app-button'><img class='mirror-app-icon' id='news' src='{{ url_for('static', filename='icons/app/twitter.png') }}'></button>
+						<button class='app-button'><img class='mirror-app-icon' src="{{ url_for('static', filename='icons/app/settings.png') }}"></button>
+						<button class='app-button'><img class='mirror-app-icon' src="{{ url_for('static', filename='icons/app/photos.png') }}"></button>
+						<button class='app-button'><img class='mirror-app-icon' src="{{ url_for('static', filename='icons/app/news.png') }}"></button>
+						<button class='app-button'><img class='mirror-app-icon' src="{{ url_for('static', filename='icons/app/weather.png') }}"></button>
+						<button class='app-button'><img class='mirror-app-icon' id='news' src="{{ url_for('static', filename='icons/app/twitter.png') }}"></button>
 					</div>
 				</div>
 
 				<div class='center-side-container'>
 					
-					<div class='app-content-container'>
-						
+					<div class='news-app-container'>
+						{% for headline in currentNews %}
+						<div class='headline-container'>
+							<div class='headline-icon'><img src='{{ url_for('static',filename='assets/News.png') }}'></div>
+							<div class='headline-text'>{{ headline[0] }}</div>
+						</div>
+						{% endfor %}
 					</div>
 
 				</div>		
@@ -45,10 +50,10 @@
 				<div class='right-side-container'>
 					<div class='app-container right-app'>
 						<button class='app-button'><img class='mirror-app-icon' src="{{ url_for('static', filename='icons/app/camera.png') }}"></button>
-						<button class='app-button'><img class='mirror-app-icon' src='{{ url_for('static', filename='icons/app/settings.png') }}'></button>
-						<button class='app-button'><img class='mirror-app-icon' src='{{ url_for('static', filename='icons/app/photos.png') }}'></button>
-						<button class='app-button'><img class='mirror-app-icon' src='{{ url_for('static', filename='icons/app/news.png') }}'></button>
-						<button class='app-button'><img class='mirror-app-icon' src='{{ url_for('static', filename='icons/app/weather.png') }}'></button>
+						<button class='app-button'><img class='mirror-app-icon' src="{{ url_for('static', filename='icons/app/settings.png') }}"></button>
+						<button class='app-button'><img class='mirror-app-icon' src="{{ url_for('static', filename='icons/app/photos.png') }}"></button>
+						<button class='app-button'><img class='mirror-app-icon' src="{{ url_for('static', filename='icons/app/news.png') }}"></button>
+						<button class='app-button'><img class='mirror-app-icon' src="{{ url_for('static', filename='icons/app/weather.png') }}"></button>
 						<button class='app-button'><img class='mirror-app-icon' id='news' src='{{ url_for('static', filename='icons/app/twitter.png') }}'></button>
 					</div>
 				</div>
@@ -57,4 +62,5 @@
 		</div>
 
 	</div>
+
 {% endblock content %}
