@@ -6,8 +6,9 @@ function update_time() {
 
 	var d = new Date();  // Javascript date object to fetch updated date
 
-	var hour = hours12(d);  // Returns normal 12 hour hour (not military)
-	var minute = d.getMinutes();  // minute count
+	// Ternary to add leading zero to date
+	var hour = (hours12(d) < 10 ? '0' : '') + hours12(d);  // Returns normal 12 hour hour (not military)
+	var minute = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();  // minute count
 	var day = d.getDate();  // Get full month day number
 
 	// Convert day and month int to string representation
@@ -16,7 +17,7 @@ function update_time() {
 	"July", "August", "September", "October", "November", "December"][d.getMonth()];
 	
 	// Set the updated time to the clock
-	$('#time-top').text("0" + hour + ":" + minute);
+	$('#time-top').text(hour + ":" + minute);
 	$('#time-mid').text(day_name);
 	$('#time-bottom').text(month_name + ' ' + day);	
 
