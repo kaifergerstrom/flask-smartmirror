@@ -1,18 +1,27 @@
-import json
+import json, requests
 from urllib.request import urlopen
 
-def fetch_ip():
-	# Grab location information from IP through web scraping
-	url = 'https://ipapi.co/8.8.8.8/json/'
-	response = urlopen(url)
-	data = json.load(response)
+class IP:
 
-	IP = data['ip']
-	org = data['org']
-	city = data['city']
-	country = data['country']
-	latitude = data['latitude']
-	longitude = data['latitude']
-	region = data['region']
+	def __init__(self):
 
-	return latitude, longitude
+		IP = requests.get('http://ip.42.pl/raw').text  # Get the IP
+
+		# Get the location information of IP
+		url = 'https://ipapi.co/{}/json/'.format(IP)
+		response = urlopen(url)
+		data = json.load(response)
+
+		# Extract individual information from IP
+		self.IP = data['ip']
+		self.org = data['org']
+		self.city = data['city']
+		self.country = data['country']
+		self.latitude = data['latitude']
+		self.longitude = data['longitude']
+		self.region = data['region']
+
+
+if __name__ == "__main__":
+	ip = IP()
+	print(ip.IP);

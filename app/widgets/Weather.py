@@ -1,7 +1,7 @@
 import requests
 import json
-from urllib.request import urlopen
 
+# Icon dictionary for relative images
 icon_lookup = {
 	'clear-day': "assets/Sun.png",  # clear sky day
 	'wind': "assets/Wind.png",   #wind
@@ -18,36 +18,22 @@ icon_lookup = {
 	'hail': "assests/Hail.png"  # hail
 }
 
-def get_geo():
-	# Grab location information from IP through web scraping
-	IP = requests.get('http://ip.42.pl/raw').text
-	print(IP)
-	url = 'https://ipapi.co/{}/json/'.format(IP)
-	response = urlopen(url)
-	data = json.load(response)
-
-	IP = data['ip']
-	org = data['org']
-	city = data['city']
-	country = data['country']
-	latitude = data['latitude']
-	longitude = data['longitude']
-	region = data['region']
-
-	return latitude, longitude
-
-
 def get_weather():
 
+	ip = IP()  # Get current location information
+
+	# Get json from dark skys api
 	APIKEY = '6b4e2599041ea02b9f19e4e86ae23f59'
-	LAT, LON = get_geo()
+	LAT, LON = ip.latitude, ip.longitude
 	URL = 'https://api.darksky.net/forecast/{}/{},{}'.format(APIKEY, LAT, LON)
-	print(URL)
 	r = requests.get(URL)
 	json = r.json()
+
+	# Get current and hourly data
 	currently = json['currently']
 	hourly = json['hourly']
-
+	
+	# Fetch important information for display
 	title = currently['summary']
 	icon = icon_lookup[currently['icon']]
 	temperature = int(round(currently['temperature']))
@@ -57,4 +43,7 @@ def get_weather():
 
 
 if __name__ == "__main__":
-	get_weather()
+	from IP import IP
+	print(get_weather())
+else:
+	from widgets.IP import IP

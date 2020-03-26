@@ -6,25 +6,24 @@
 
 			<div class='weather-top-container'>
 				<div class='upper-weather-container'>
-					<div class='weather-current-temp'>{{ currentWeather.temperature }}&#176;</div>
-					<div class='weather-current-icon'><img src="{{ url_for('static', filename=currentWeather.icon) }}" id='weather-current-img'></div>
+					<div class='weather-current-temp'></div>
+					<div class='weather-current-icon'><img src="" id='weather-current-img'></div>
 				</div>
-				<div class='weather-current-title'>{{ currentWeather.title }}</div>
-				<div class='weather-current-desc'>{{ currentWeather.desc }}</div>
+				<div class='weather-current-title'></div>
+				<div class='weather-current-desc'></div>
 			</div>
 
 			<div class='time-top-container' id='time-top-container'>
-				<div class='time-top' id='time-top'>{{ currentTime.hour }}:{{ currentTime.minute }}</div>
-				<div class='time-mid' id='time-mid'>{{ currentTime.day }}</div>
-				<div class='time-bottom' id='time-bottom'>{{ currentTime.month }} {{ currentTime.day_num }}</div>
+				<div class='time-top' id='time-top'></div>
+				<div class='time-mid' id='time-mid'></div>
+				<div class='time-bottom' id='time-bottom'></div>
 			</div>
 		</div>
 
 		<div class='mirror-middle-container'>
-			{{ command }}
-			<!--
 			<div class='center-side-container'>
-					
+				
+				<!--
 				<div class='app-main-container'>
 					<div class='news-app-container'>
 						{% for headline in currentNews %}
@@ -34,11 +33,10 @@
 						</div>
 						{% endfor %}
 					</div>
-
 				</div>
+				-->
 
 			</div>	
-			-->	
 
 		</div>
 
