@@ -25,5 +25,14 @@ def update_weather():
 	return jsonify({'result' : 'success', 'currentWeather' : currentWeather})
 
 
+@app.route("/update_widget", methods=['POST'])
+def update_widget():
+	'''
+	Returns the widget data from the assistant
+	'''
+	json = get_news()
+	return jsonify({'result' : 'success', 'json' : json, 'widget' : 'news'})
+
+
 if __name__ == '__main__':
 	app.run(debug=True)

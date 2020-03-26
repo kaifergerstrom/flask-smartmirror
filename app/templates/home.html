@@ -21,26 +21,25 @@
 		</div>
 
 		<div class='mirror-middle-container' id='widget-content'>
-			<!--
-				
-{% block widget %}
-<div class='app-main-container'>
-    <div class='news-app-container'>
-        {% for headline in currentNews %}
-        <div class='headline-container'>
-            <div class='headline-icon'><img src='{{ url_for('static',filename='assets/News.png') }}'></div>
-            <div class='headline-text'>{{ headline[0] }}</div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-{% endblock %}
+			<!--		
+			{% block widget %}
+			<div class='app-main-container'>
+				<div class='news-app-container'>
+					{% for headline in currentNews %}
+					<div class='headline-container'>
+						<div class='headline-icon'><img src='{{ url_for('static',filename='assets/News.png') }}'></div>
+						<div class='headline-text'>{{ headline[0] }}</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			{% endblock %}
 			-->
 		</div>
 
 	</div>
 
-	<script type="text/javascript" src="{{ url_for('static', filename = 'update.js') }}"></script>
-	<script type="text/javascript" src="{{ url_for('static', filename = 'widget.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename = 'js/update.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename = 'js/widget.js') }}"></script>
 
 {% endblock content %}
