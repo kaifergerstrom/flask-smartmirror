@@ -54,7 +54,7 @@ def get_weather_script():
 	data = get_weather()
 	script = """It is currently {0} at {1} degrees fahrenheit today with a high of {2} degrees fahrenheit and a low of {3} 
 	degrees fahrenheit. Today it will be {4} and there will be {5}""".format(data['title'], data['temperature'], data['temperatureHigh'], data['temperatureLow'], data['desc'], data['week_summary'])
-	return ' '.join(script.lower().split())
+	return ' '.join(script.lower().split())  # Format and remove whitespace from string
 
 if __name__ == "__main__":
 	from IP import IP

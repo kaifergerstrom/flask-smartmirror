@@ -20,32 +20,27 @@
 			</div>
 		</div>
 
-		<div class='mirror-middle-container'>
-			<div class='center-side-container'>
+		<div class='mirror-middle-container' id='widget-content'>
+			<!--
 				
-				<!--
-				<div class='app-main-container'>
-					<div class='news-app-container'>
-						{% for headline in currentNews %}
-						<div class='headline-container'>
-							<div class='headline-icon'><img src='{{ url_for('static',filename='assets/News.png') }}'></div>
-							<div class='headline-text'>{{ headline[0] }}</div>
-						</div>
-						{% endfor %}
-					</div>
-				</div>
-				-->
-
-			</div>	
-
+{% block widget %}
+<div class='app-main-container'>
+    <div class='news-app-container'>
+        {% for headline in currentNews %}
+        <div class='headline-container'>
+            <div class='headline-icon'><img src='{{ url_for('static',filename='assets/News.png') }}'></div>
+            <div class='headline-text'>{{ headline[0] }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+			-->
 		</div>
 
 	</div>
 
-<script>
-
-
-
-</script>
+	<script type="text/javascript" src="{{ url_for('static', filename = 'update.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename = 'widget.js') }}"></script>
 
 {% endblock content %}
