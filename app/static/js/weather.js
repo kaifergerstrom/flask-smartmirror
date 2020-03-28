@@ -1,3 +1,9 @@
+/*
+file: weather.js
+main weather display on mirror homepage, current temperature and forcast for day
+*/
+
+//Function to fetch updated weather from flask server
 function update_weather() {
 
 	// Send an ajax post request to get updated weather from flask

@@ -15,14 +15,17 @@ export class Widget {
     __build() {
         return "";
     }
-
+    
     open(json) {
-        this.json = json;
-        var html = this.__build();
+        this.json = json;  // Create global json variable
+        var html = this.__build();  // Get the results of the build function
+
+        // Display the build function
         $("#widget-content").fadeOut('slow', function() {
             $("#widget-content").html(html);
             $("#widget-content").fadeIn();
         });
+
     }
     
 }

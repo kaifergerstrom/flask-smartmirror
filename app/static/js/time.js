@@ -1,3 +1,8 @@
+/*
+file: time.js
+main time display on mirror homepage, live updating
+*/
+
 // Small function to convert military time to 12 hour time
 function hours12(date) {return (date.getHours() + 24) % 12 || 12;}
 

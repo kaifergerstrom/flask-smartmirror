@@ -1,7 +1,7 @@
 
 import {Widget} from "../classes/Widget.js"
 /**
- * NewsWidget.
+ * NewsWidget, get updated news and display them
  *
  * @class NewsWidget
  * @extends {Widget}

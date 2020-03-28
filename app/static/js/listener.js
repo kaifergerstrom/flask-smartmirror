@@ -1,5 +1,12 @@
+/*
+file: listener.js
+listener for command changes 
+*/
+
+// Imports for widgets
 import NewsWidget from "./widgets/NewsWidget.js";
 import MusicWidget from "./widgets/MusicWidget.js";
+
 import CommandRunner from "./classes/CommandRunner.js";
 
 var command_runner = new CommandRunner();

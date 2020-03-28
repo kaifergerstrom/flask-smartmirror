@@ -3,9 +3,15 @@
 <head>
 	
 	<title>Smart Mirror</title>
+
 	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+
+	<!-- Widget imports -->
+	<script type="text/javascript" src="{{ url_for('static', filename = 'js/time.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename = 'js/weather.js') }}"></script>
+	<script type="module" src="{{ url_for('static', filename = 'js/listener.js') }}"></script>
 
 </head>
 <body>
