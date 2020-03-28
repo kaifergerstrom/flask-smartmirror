@@ -1,16 +1,17 @@
 
-import {Widget} from "../Widget.js"
+import {Widget} from "../classes/Widget.js"
 /**
- * NewsWidget.
+ * MusicWidget.
  *
- * @class NewsWidget
+ * @class MusicWidget
  * @extends {Widget}
  */
 export default class MusicWidget extends Widget {
 
     __build() {
-        console.log(this.json)
-        return "<b>Music Time</b>";
+         var html = "<b>Music</b>";
+
+        return html;
     }
 
 }

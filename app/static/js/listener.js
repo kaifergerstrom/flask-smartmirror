@@ -1,12 +1,12 @@
-
 import NewsWidget from "./widgets/NewsWidget.js";
 import MusicWidget from "./widgets/MusicWidget.js";
+import CommandRunner from "./classes/CommandRunner.js";
 
-var commands = {
- "news" : new NewsWidget(),
- "music" : new MusicWidget(),
-};
+var command_runner = new CommandRunner();
 
+// Add widget listeners here!
+command_runner.add_command("news", new NewsWidget());
+command_runner.add_command("music", new MusicWidget());
 
 $(document).ready(function() {
 
@@ -17,8 +17,7 @@ $(document).ready(function() {
     });
     
     socket.on('command', function(data) {
-        console.log(data);
-        commands[data["open"]].open();
+        command_runner.run_command(data);
     });
 
 });

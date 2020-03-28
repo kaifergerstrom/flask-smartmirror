@@ -1,5 +1,5 @@
 
-import {Widget} from "../Widget.js"
+import {Widget} from "../classes/Widget.js"
 /**
  * NewsWidget.
  *
@@ -9,8 +9,32 @@ import {Widget} from "../Widget.js"
 export default class NewsWidget extends Widget {
 
     __build() {
-        console.log(this.json)
-        return "<b>News Time</b>";
+         
+        var headlines = "";
+
+        for (var headline in this.json['data']) {
+
+            var headline_html = `
+            <div class='headline-container'>
+                <div class='headline-icon'><img src='/static/assets/News.png'></div>
+                <div class='headline-text'>${headline}</div>
+            </div>
+            `
+            headlines = headlines.concat(headline_html)
+            
+        }
+
+        var html = `
+        <div class='app-main-container'>
+            <div class='news-app-container'>
+                ${headlines}
+            </div>
+        </div>
+        `;
+
+        console.log("Opening news app!");
+
+        return html;
     }
 
 }

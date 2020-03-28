@@ -42,10 +42,11 @@ def update_widget():
 def background_thread():     
 	i = 0                                                   
 	while True:
-		if (i % 2 == 0):                                        
-			socketio.emit('command', {'open': "news"})
+		if not (i % 2 == 0):                                        
+			socketio.emit('command', {'open': "news", 'data':get_news()});
+			print("running news");
 		else:
-			socketio.emit('command', {'open': "music"})
+			socketio.emit('command', {'close': "none"})
 		time.sleep(10)
 		i += 1
 
