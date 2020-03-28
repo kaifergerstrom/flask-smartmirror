@@ -39,7 +39,12 @@
 
 	</div>
 
+
 	<script type="text/javascript" src="{{ url_for('static', filename = 'js/update.js') }}"></script>
-	<script type="text/javascript" src="{{ url_for('static', filename = 'js/widget.js') }}"></script>
+
+	<script type="module" src="{{ url_for('static', filename = 'js/widgets/NewsWidget.js') }}"></script>
+	<script type="module" src="{{ url_for('static', filename = 'js/widgets/MusicWidget.js') }}"></script>
+	<script type="module" src="{{ url_for('static', filename = 'js/Widget.js') }}"></script>
+	<script type="module" src="{{ url_for('static', filename = 'js/listener.js') }}"></script>
 
 {% endblock content %}

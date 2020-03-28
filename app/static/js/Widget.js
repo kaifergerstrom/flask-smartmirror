@@ -3,7 +3,7 @@
  *
  * @class Widget
  */
-class Widget {
+export class Widget {
 
     constructor(json) {
         if (this.constructor == Widget) {
@@ -34,22 +34,3 @@ class Widget {
     }
 
 }
-
-/**
- * NewsWidget.
- *
- * @class NewsWidget
- * @extends {Widget}
- */
-class NewsWidget extends Widget {
-
-    __build() {
-        console.log(this.json)
-        return "<b>Test</b>";
-    }
-
-}
-
-new NewsWidget().open();
-
-//close_widget(html);
