@@ -57,7 +57,7 @@ def get_weather_script():
 	return ' '.join(script.lower().split())  # Format and remove whitespace from string
 
 if __name__ == "__main__":
-	from IP import IP
+	from .IP import IP
 	print(get_weather_script())
 else:
-	from widgets.IP import IP
+	from .IP import IP
