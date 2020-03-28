@@ -37,4 +37,43 @@ export default class NewsWidget extends Widget {
         return html;
     }
 
+    __add_style() {
+        var styles = `
+        .news-app-container {
+            border: 1px solid white;
+            text-align: left;
+            font-size: 18px;
+            width: 600px;
+            padding-top: 30px;
+            padding-left: 30px;
+            border-radius: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .headline-container {
+            height: 70px;
+        }
+
+        .headline-icon {
+            float: left;
+        }
+
+        .headline-icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .headline-text {
+            float: left;
+            margin-left: 20px;
+            margin-top: 10px;
+            max-width: 500px;
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+        `;
+        return styles;
+    }
+
 }
