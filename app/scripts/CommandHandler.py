@@ -1,35 +1,44 @@
-
-from .widgets.NewsWidget import NewsWidget
 from .agent.classes.Voice import Voice
 
-sample = "Alexa, tell me a little about the news"
+from .widgets.NewsWidget import NewsWidget
 
 # Class to manage all voice requests and return command information to socket connection
 class CommandHandler:
 
-    voice = Voice()  # Voice module from voice-agent repository
-
+    # Put command objects here...
     commands = {
         'news': NewsWidget(),
-        'close': "yeet",
+        'close': "none",
     }
 
     def __init__(self):
-        pass
+        self.voice = Voice()  # Voice module from voice-agent repository
 
-    # Input text, return which key to execute
-    def __search_for_key(self, text):
+    def __search_for_key(self, text):  # Search for a dictionary key in the phrase
         for key in self.commands:
+            print("key",key)
             if key in text:
                 return key
+        return None
 
     def run(self, text):
-        key = self.__search_for_key(text)
-        if (key == "close"):
-            return {'close': key, 'data': "none"}
-        self.script = self.commands[key].get_script()
-        return {'open': "news", 'data': self.commands[key].get()}
+        key = self.__search_for_key(text)  # Get the relative key from phrase
+        if key:
+            if (key == "close"):  # if the command is to close something, just clear everything
+                return {'close': key, 'data': "none"}
+            self.script = self.commands[key].get_script()  # fetch the script if there is one from the class
+            return {'open': "news", 'data': self.commands[key].get()}  # Return json to send over socket
+        else:
+            self.voice.say("Sorry, I don't know that...")
 
     def speak(self):
-        self.voice.say(self.script)
+        self.voice.say(self.script)  # 
+
+
+if __name__ == "__main__":
+    sample_phrase = "close the tab"
+    command_handler = CommandHandler()
+    print(command_handler.run(sample_phrase))
+
+
 

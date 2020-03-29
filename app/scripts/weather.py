@@ -1,5 +1,6 @@
 import requests
 import json
+from .IP import IP
 
 # Icon dictionary for relative images
 icon_lookup = {
@@ -56,8 +57,6 @@ def get_weather_script():
 	degrees fahrenheit. Today it will be {4} and there will be {5}""".format(data['title'], data['temperature'], data['temperatureHigh'], data['temperatureLow'], data['desc'], data['week_summary'])
 	return ' '.join(script.lower().split())  # Format and remove whitespace from string
 
+
 if __name__ == "__main__":
-	from .IP import IP
 	print(get_weather_script())
-else:
-	from .IP import IP

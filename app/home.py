@@ -11,14 +11,16 @@ import datetime, requests, time
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
-socketio = SocketIO(app)
+
+socketio = SocketIO(app)  # Initialize socket api
 
 thread = None  # Thread variable for listener
 
-listener = Listener()
+# Run the voice recording listener
+listener = Listener(name="mirror mirror")
 listener.run()
 
-command_handler = CommandHandler()
+command_handler = CommandHandler()  # Create command handler object for listener
 
 
 @app.route("/")
@@ -47,39 +49,34 @@ def update_widget():
 	json = get_news()
 	return jsonify({'result' : 'success', 'json' : json, 'widget' : 'news'})
 	
+# Listen for changes to the command
+def command_listener(): 
 
-def background_thread():  
-	prev_command = None                                               
+	prev_command = None      
+
 	while True:
-		curr_command = listener.get_command()
+
+		curr_command = listener.get_command()  # Get the full phrase from the listener
 		print(curr_command)
-		if (curr_command != prev_command and curr_command != ""):
-			#print(curr_command)
+
+		if (curr_command != prev_command and curr_command != ""):  # Detect changes in the command
+			
 			request = command_handler.run(curr_command)
-			print(request)
 			socketio.emit('command', request);
+
 			try:
-				command_handler.speak()
+				command_handler.speak()  # If the command has a script attached, speak...
 			except:
 				pass
 
-		prev_command = curr_command
-		'''
-		if not (i % 2 == 0):                                        
-			socketio.emit('command', {'open': "news", 'data':get_news()});
-			print("running news");
-		else:
-			socketio.emit('command', {'close': "none"})
-		time.sleep(10)
-		i += 1
-		'''
+		prev_command = curr_command  # 
 
 
 @socketio.on('connect')                                                         
 def connect():                                                                  
-	global thread                                                               
+	global thread  # Fetch the thread variable to only create one thread                                                              
 	if thread is None:                                                          
-		thread = socketio.start_background_task(target=background_thread)   
+		thread = socketio.start_background_task(target=command_listener)  # Run listener in background socket function
 
 
 if __name__ == '__main__':
