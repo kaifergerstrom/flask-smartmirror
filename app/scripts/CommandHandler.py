@@ -16,7 +16,6 @@ class CommandHandler:
 
     def __search_for_key(self, text):  # Search for a dictionary key in the phrase
         for key in self.commands:
-            print("key",key)
             if key in text:
                 return key
         return None
@@ -25,14 +24,20 @@ class CommandHandler:
         key = self.__search_for_key(text)  # Get the relative key from phrase
         if key:
             if (key == "close"):  # if the command is to close something, just clear everything
-                return {'close': key, 'data': "none"}
+                return self.__close()
             self.script = self.commands[key].get_script()  # fetch the script if there is one from the class
             return {'open': "news", 'data': self.commands[key].get()}  # Return json to send over socket
         else:
             self.voice.say("Sorry, I don't know that...")
 
     def speak(self):
-        self.voice.say(self.script)  # 
+        self.voice.say(self.script)
+
+    def __close(self):  # Send close command and end all speaking proccess
+        self.script = ""  # Reset the script
+        self.voice.say("")  # End what is being talked about
+        return {'close': "none", 'data': "none"}
+
 
 
 if __name__ == "__main__":
